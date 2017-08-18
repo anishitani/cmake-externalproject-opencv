@@ -12,7 +12,6 @@ ExternalProject_Add(
     DEPENDS GEOS
     URL "http://download.osgeo.org/gdal/${GDAL_VERSION}/gdal${GDAL_MAJOR}${GDAL_MINOR}${GDAL_BUILD}.zip"
     URL_MD5 784333109a92b49efd299caa181064e3
-#    BINARY_DIR ${GDAL_SB_BUILD_DIR}
     INSTALL_DIR ${SB_INSTALL_DIR}
     CONFIGURE_COMMAND LD_LIBRARY_PATH=${SB_INSTALL_DIR}/lib <SOURCE_DIR>/configure --prefix=${SB_INSTALL_DIR} --with-geos=${SB_INSTALL_DIR}/bin/geos-config
     BUILD_IN_SOURCE 1
