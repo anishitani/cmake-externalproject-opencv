@@ -1,11 +1,21 @@
-ExternalProject_Add(gdal
-   PREFIX gdal
-   DEPENDS geos
-   URL "http://download.osgeo.org/gdal/2.1.3/gdal213.zip"
-   CONFIGURE_COMMAND LD_LIBRARY_PATH=${DEP_INSTALL_DIR}/lib <SOURCE_DIR>/configure --prefix=${DEP_INSTALL_DIR} --with-geos=${DEP_INSTALL_DIR}/bin/geos-config
-   BUILD_IN_SOURCE 1
-   BUILD_COMMAND $(MAKE)
-   INSTALL_COMMAND $(MAKE) install
-   INSTALL_DIR ${DEP_INSTALL_DIR}
-   DOWNLOAD_DIR ${DEP_DOWNLOAD_DIR}/gdal
+set ( SB_PROJECT GDAL )
+SETUP_SUPERBUILD( PROJECT ${SB_PROJECT} )
+
+set( GDAL_MAJOR 2 )
+set( GDAL_MINOR 2 )
+set( GDAL_BUILD 0 )
+set( GDAL_VERSION "${GDAL_MAJOR}.${GDAL_MINOR}.${GDAL_BUILD}" )
+
+ExternalProject_Add(
+    ${SB_PROJECT}
+    PREFIX  ${SB_PROJECT}
+    DEPENDS GEOS
+    URL "http://download.osgeo.org/gdal/${GDAL_VERSION}/gdal${GDAL_MAJOR}${GDAL_MINOR}${GDAL_BUILD}.zip"
+    URL_MD5 784333109a92b49efd299caa181064e3
+#    BINARY_DIR ${GDAL_SB_BUILD_DIR}
+    INSTALL_DIR ${SB_INSTALL_DIR}
+    CONFIGURE_COMMAND LD_LIBRARY_PATH=${SB_INSTALL_DIR}/lib <SOURCE_DIR>/configure --prefix=${SB_INSTALL_DIR} --with-geos=${SB_INSTALL_DIR}/bin/geos-config
+    BUILD_IN_SOURCE 1
+    BUILD_COMMAND $(MAKE)
+    INSTALL_COMMAND $(MAKE) install
 )
