@@ -4,14 +4,14 @@ set( CMAKE_MODULE_PATH
      ${CMAKE_CURRENT_LIST_DIR}
      ${CMAKE_MODULE_PATH} )
 
-set( SB_INSTALL_DIR ${CMAKE_BINARY_DIR}/install CACHE PATH
+set( SB_INSTALL_DIR ${CMAKE_SOURCE_DIR}/install CACHE PATH
      "Directory where SuperBuild will install dependencies." )
 
 set( SB_BINARY_DIR ${SB_INSTALL_DIR}/bin )
 set( SB_INCLUDE_DIR ${SB_INSTALL_DIR}/include )
 set( SB_LIBRARY_DIR ${SB_INSTALL_DIR}/lib )
 
-set( ENV{PKG_CONFIG_PATH} $ENV{PKG_CONFIG_PATH}:${SB_INSTALL_DIR}/lib/pkgconfig )
+set( ENV{PKG_CONFIG_PATH} ${SB_INSTALL_DIR}/lib/pkgconfig:$ENV{PKG_CONFIG_PATH} )
 
 # Initialize usefull variables to build a superbuild project
 macro(SETUP_SUPERBUILD)
